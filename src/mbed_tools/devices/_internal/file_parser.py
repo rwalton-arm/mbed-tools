@@ -114,7 +114,7 @@ def read_online_id(file_contents: str) -> Optional[OnlineId]:
 
 def extract_product_code_from_htm(directories: Iterable[pathlib.Path]) -> Optional[str]:
     """Return first product code found in files contents, None if not found."""
-    all_files_contents = _get_all_htm_files_contents(directories)
+    all_files_contents = get_all_htm_files_contents(directories)
     for contents in all_files_contents:
         product_code = read_product_code(contents)
         if product_code:
@@ -124,7 +124,7 @@ def extract_product_code_from_htm(directories: Iterable[pathlib.Path]) -> Option
 
 def extract_online_id_from_htm(directories: Iterable[pathlib.Path]) -> Optional[OnlineId]:
     """Return first online id found in files contents, None if not found."""
-    all_files_contents = _get_all_htm_files_contents(directories)
+    all_files_contents = get_all_htm_files_contents(directories)
     for contents in all_files_contents:
         online_id = read_online_id(contents)
         if online_id:
@@ -132,7 +132,7 @@ def extract_online_id_from_htm(directories: Iterable[pathlib.Path]) -> Optional[
     return None
 
 
-def _get_all_htm_files_contents(directories: Iterable[pathlib.Path]) -> List[str]:
+def get_all_htm_files_contents(directories: Iterable[pathlib.Path]) -> List[str]:
     """Yields all htm files contents found in the list of given directories."""
     files_in_each_directory = (directory.iterdir() for directory in directories)
     all_files = itertools.chain.from_iterable(files_in_each_directory)
